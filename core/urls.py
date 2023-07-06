@@ -6,14 +6,13 @@ from drf_yasg import openapi
 from django.urls import path
 from content.views import SignupView, GetCSRFToken, LoginView, LogoutView, CheckAuthenticatedView
 
-from users.views import GetUserProfileView, UpdateUserProfileView
-
+from users.views import GetUserProfileView, UpdateUserProfileView, GetUsers
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Snippets API",
+        title="API Testing",
         default_version='v1',
-        description="Test description",
+        description="Here we are testing our api's",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="contact@snippets.local"),
         license=openapi.License(name="BSD License"),
@@ -38,4 +37,6 @@ urlpatterns = [
     path('csrf_cookie', GetCSRFToken.as_view()),
     path('user', GetUserProfileView.as_view()),
     path('update', UpdateUserProfileView.as_view()),
+
+    path('users', GetUsers.as_view()),
 ]
