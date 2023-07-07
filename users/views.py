@@ -20,6 +20,27 @@ class GetUserProfileView(APIView):
 
 
 class UpdateUserProfileView(APIView):
+    def patch(self, request, format=None):
+        try:
+            user = self.request.user
+            username = user.username
+
+            data = self.request.data
+            first_name = data['first_name']
+            last_name = data['last_name']
+            phone = data['phone']
+            city = data['city']
+
+            UserProfile.objects.filter(user=user).update(first_name=first_name, last_name=last_name, phone=phone,
+                                                         city=city)
+
+            user_profile = UserProfile.objects.get(user=user)
+            user_profile = UserProfileSerializer(user_profile)
+
+            return Response({'profile': user_profile.data, 'username': str(username)})
+        except:
+            return Response({'error': 'Something went wrong when updating profile'})
+
     def put(self, request, format=None):
         try:
             user = self.request.user

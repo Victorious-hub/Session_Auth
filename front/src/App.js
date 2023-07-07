@@ -1,9 +1,34 @@
-import React, { useState, useEffect } from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import axios from "axios";
+import React from "react";
+import {BrowserRouter as Router,Route,Routes} from 'react-router-dom';
+import Layout from './hocs/Layout'
+import Register from './containers/Register'
+import Login from './containers/Login'
+import DashBoard from './containers/DashBoard'
+import Home from './containers/Home'
 
-import TodoList from "./components/TodoList"
+import {Provider} from 'react-redux';
+import store from './store';
+const App = () => {
+
+    return (
+        <Provider store={store}>
+        <Router>
+           <Layout>
+                <Routes>
+               <Route exact="true" path = '/' element = {<Home/>}/>
+               <Route exact="true" path = '/register' element = {<Register/>}/>
+               <Route exact="true" path = '/login' element = {<Login/>}/>
+               <Route exact="true" path = '/dashboard' element = {<DashBoard/>}/>
+                </Routes>
+           </Layout>
+        </Router>
+        </Provider>
+    );
+}
+
+export default App;
+
+/*import TodoList from "./components/TodoList"
 import TodoForm from "./components/TodoForm";
 
 function App() {
@@ -35,4 +60,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;*/
