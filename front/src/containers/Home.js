@@ -8,7 +8,7 @@ const Home = () => {
               <p className='lead'>You may authenticate yourself using sessions!</p>
               <hr className='my-4'/>
               <p>Click the Log In button</p>
-              <Link class='btn btn-primary btn-lg' to='/login' role='button'>Login</Link>
+              <Link className='btn btn-primary btn-lg' to='/login' role='button'>Login</Link>
           </div>
       </div>
   );

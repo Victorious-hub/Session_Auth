@@ -11,6 +11,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.utils.decorators import method_decorator
 
 
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class CheckAuthenticatedView(APIView):
     def get(self, request, format=None):
         user = self.request.user
@@ -25,7 +26,7 @@ class CheckAuthenticatedView(APIView):
             return Response({'error': 'Something went wrong when checking authentication status'})
 
 
-@method_decorator(csrf_protect, name='dispatch')
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class SignupView(APIView):
     permission_classes = (permissions.AllowAny,)
 
@@ -58,7 +59,7 @@ class SignupView(APIView):
             return Response({'error': 'Something went wrong when registering account'})
 
 
-@method_decorator(csrf_protect, name='dispatch')
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class LoginView(APIView):
     permission_classes = (permissions.AllowAny,)
 
