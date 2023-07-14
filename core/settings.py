@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -49,7 +50,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+         'DIRS': [os.path.join(BASE_DIR, 'front/build'),]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -127,7 +128,7 @@ CORS_ALLOW_HEADERS = [
     '*'
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:3000','http://*.domain.com']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:3000','http://*.domain.com','http://127.0.0.1:3001',]
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = False
 REST_FRAMEWORK = {
@@ -138,3 +139,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'front/build/static')
+]
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')

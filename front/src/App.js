@@ -5,7 +5,6 @@ import Register from './containers/Register'
 import Login from './containers/Login'
 import DashBoard from './containers/DashBoard'
 import Home from './containers/Home'
-
 import {Provider} from 'react-redux';
 import store from './store';
 const App = () => {

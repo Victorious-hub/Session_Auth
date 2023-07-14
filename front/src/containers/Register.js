@@ -7,7 +7,7 @@ import CSRFToken from "../components/CSRFToken";
 
 
 
-const Register = ({register}) => {
+const Register = ({register,isAuthenticated}) => {
     const[formData,setFormData] = useState({
         username: "",
         password: "",
@@ -28,7 +28,11 @@ const Register = ({register}) => {
              setAccountCreated(true);
         }
     };
-    if( accountCreated)
+    if(isAuthenticated)
+    {
+        return <Navigate to='/dashboard'/>;
+    }
+    else if( accountCreated)
     {
         return <Navigate to='/'/>;
     }
@@ -85,5 +89,8 @@ const Register = ({register}) => {
         </div>
   );
 }
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(null,{register})(Register);
+export default connect(mapStateToProps,{register})(Register);
